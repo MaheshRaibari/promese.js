@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="move.css">
+</head>
+
+<body>
+    <div id="wrapper">
+        <header>
+            <h1>Move Search</h1>
+        </header>
+        <section id="Search">
+            <form action="">
+                <input type="text" placeholder="Enter a name to Search">
+                <button type="submit">submot</button>
+            </form>
+        </section>
+    </div>
+
+
+    <script>
+        let form = document.querySelector("form")
+        let imageName=document.querySelector("input")
+        form.onsubmit = (e) => {
+            e.preventDefault()
+            fetch("https://api.themoviedb.org/3/search/movie?api_key=009da836f0aae5d570d17bd1135ac0c4&language=en-US&query="+imageName.value+"&page=1&include_adult=false")
+                .then((Response) => { return Response.json() })
+                .then((result) => {
+                    console.log(result)
+                    names(result)
+                })
+        }
+
+        function names(data) {
+            for(let i=0;i<data.length;i++){}
+            let image = document.createElement("img");
+            image.src = "https://image.tmdb.org/t/p/original" + data.results[0].poster_path;
+
+            let title = document.createElement("h1");
+            title.innerHTML = data.results[0].title;
+
+            let id = document.createElement("h1");
+            id.innerHTML = data.results[0].id;
+
+            let original = document.createElement("h2");
+            original.innerHTML = data.results[0].original_title;
+
+            let overview = document.createElement("h2");
+            overview.innerHTML = data.results[0].overview;
+
+            let popularity = document.createElement("h3");
+            popularity.innerHTML = data.results[0].popularity;
+
+            let poster_path = document.createElement("h3");
+            poster_path.innerHTML = data.results[0].poster_path;
+
+            let release_date = document.createElement("h3");
+            release_date.innerHTML = data.results[0].release_date;
+
+            let vote_average = document.createElement("h4");
+            vote_average.innerHTML = data.results[0].vote_average;
+
+            let vote_count = document.createElement("h4");
+            vote_count.innerHTML = data.results[0].vote_count;
+
+
+            document.querySelector("#Search").append(image)
+            document.querySelector("#Search").append(title)
+            document.querySelector("#Search").append(id)
+            document.querySelector("#Search").append(original)
+            document.querySelector("#Search").append(overview)
+            document.querySelector("#Search").append(popularity)
+            document.querySelector("#Search").append(poster_path)
+            document.querySelector("#Search").append(release_date)
+            document.querySelector("#Search").append(vote_average)
+            document.querySelector("#Search").append(vote_count)
+        
+
+        }
+    </script>
+</body>
+
+</html>

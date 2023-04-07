@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="menu"></div>
+
+
+    <script>
+        fetch("https://dummyjson.com/products")
+            .then((Response) => { return Response.json() })
+            .then((result) => {
+                console.log(result)
+                names(result)
+            })
+
+        function names(data) {
+            // for (let i = 0; i < data.length; i++) {
+                let image = document.createElement("img");
+                image.src = data.products[0].thumbnail;
+
+                let heading = document.createElement("h1");
+                heading.innerHTML = data.products[0].title;
+
+                let descripti = document.createElement("h3");
+                descripti.innerHTML = data.products[0].description;
+
+                let discountP = document.createElement("h5");
+                discountP.innerHTML = data.products[0].discountPercentage;
+
+                let ids = document.createElement("p");
+                ids.innerHTML = data.products[0].id;
+
+
+                document.querySelector("#menu").append(image)
+                document.querySelector("#menu").append(heading)
+                document.querySelector("#menu").append(descripti)
+                document.querySelector("#menu").append(discountP)
+                document.querySelector("#menu").append(ids)
+            // }
+        }
+    </script>
+
+</body>
+
+</html>

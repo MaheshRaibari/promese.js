@@ -1,0 +1,21 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: content-box;
+}
+header{
+    background-color: rgb(199, 162, 118);
+    font-size: 30px;
+    padding: 2rem;
+}
+#Search{
+    text-align: center;
+    padding: 1rem;
+}
+#Search button{
+    cursor: pointer;
+}
+#Search image{
+    height: 200px;
+    width: 200px;
+}
